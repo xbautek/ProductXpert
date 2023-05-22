@@ -1,0 +1,27 @@
+﻿<Page x:Class="ProductXpert.register_pagexaml"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProductXpert"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="register_pagexaml">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+        </Grid.Background>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="148,107,0,0" VerticalAlignment="Top"/>
+        <Label Content="Second Name" HorizontalAlignment="Left" Margin="148,138,0,0" VerticalAlignment="Top"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="148,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="148,190,0,0" VerticalAlignment="Top"/>
+        <Label Content="Rewrite Password" HorizontalAlignment="Left" Margin="148,216,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,111,0,0" TextWrapping="Wrap" Name="firstname" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,138,0,0" TextWrapping="Wrap" x:Name="secondname" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,168,0,0" TextWrapping="Wrap" x:Name="username" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,198,0,0" TextWrapping="Wrap" x:Name="password" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,220,0,0" TextWrapping="Wrap" x:Name="repassword" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Register now" HorizontalAlignment="Left" Margin="243,266,0,0" VerticalAlignment="Top" Name="register" RenderTransformOrigin="0.4,-0.341" Click="register_Click"/>
+    </Grid>
+</Page>
