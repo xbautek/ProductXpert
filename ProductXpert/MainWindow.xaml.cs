@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Animation;
+using ProductXpert.Classes;
 
 namespace ProductXpert
 {
@@ -44,17 +45,11 @@ namespace ProductXpert
                 {
                     Employee first = new Employee(username.Text, password.Password);
 
-                    SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
-                    SqlCommand cmd = new SqlCommand("select * from Pracownicy where login = @username and haslo = @password;",con);
+                    Database d = new();
+                    
 
-                    cmd.Parameters.AddWithValue("@username", first.Username);
-                    cmd.Parameters.AddWithValue("@password", first.PasswordHash);
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-
-                    da.Fill(dt);
-                    if(dt.Rows.Count > 0)
+                    if(d.CheckUser(username.Text, password.Password))
                     {
                         MessageBox.Show("login successfull");
                         
@@ -93,10 +88,11 @@ namespace ProductXpert
         }
 
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
+        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //     System.Windows.Application.Current.Shutdown();
+        // }
 
-        }
+        
     }
 }

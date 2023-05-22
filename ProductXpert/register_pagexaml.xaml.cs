@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity.Infrastructure;
+using ProductXpert.Classes;
 
 namespace ProductXpert
 {
