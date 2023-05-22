@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity.Infrastructure;
 
 namespace ProductXpert
 {
@@ -33,11 +34,11 @@ namespace ProductXpert
             {
                 MessageBox.Show("Enter your username!");
             }
-            else if (string.IsNullOrEmpty(password.Text))
+            else if (string.IsNullOrEmpty(password.Password))
             {
                 MessageBox.Show("Enter the password!");
             }
-            else if (repassword.Text != password.Text)
+            else if (repassword.Password != password.Password)
             {
                 MessageBox.Show("Please rewrite the password!");
             }
@@ -45,9 +46,10 @@ namespace ProductXpert
             {
                 try
                 {
+                    Employee r = new(firstname.Text, secondname.Text, username.Text, password.Password);
                     SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
                     
-                    SqlCommand cmd = new SqlCommand($"Insert into Pracownicy values ('{firstname.Text}','{secondname.Text}','{username.Text}','{password.Text}');", con);
+                    SqlCommand cmd = new SqlCommand($"Insert into Pracownicy values ('{r.Name}','{r.SecondName}','{r.Username}','{r.PasswordHash}');", con);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -56,8 +58,8 @@ namespace ProductXpert
 
                      cmd = new SqlCommand($"select * from Pracownicy where login = @username and haslo = @password;", con);
 
-                    cmd.Parameters.AddWithValue("@username", username.Text);
-                    cmd.Parameters.AddWithValue("@password", password.Text);
+                    cmd.Parameters.AddWithValue("@username", r.Username);
+                    cmd.Parameters.AddWithValue("@password", r.PasswordHash);
 
                      da = new SqlDataAdapter(cmd);
                      dt = new DataTable();

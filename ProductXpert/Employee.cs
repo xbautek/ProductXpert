@@ -11,20 +11,20 @@ namespace ProductXpert
     {
         public string? Name { get; set; }
         public string? SecondName { get; set; }
-        public string Login { get; set; }
+        public string Username { get; set; }
         public string PasswordHash { get; private set; }
 
         public Employee(string name, string secondName, string login, string password)
         {
             Name = name;
             SecondName = secondName;
-            Login = login;
+            Username = login;
             PasswordHash = GeneratePasswordHash(password);
         }
 
         public Employee(string login, string password)
         {
-            Login = login;
+            Username = login;
             PasswordHash = GeneratePasswordHash(password);
         }
 

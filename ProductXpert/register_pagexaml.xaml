@@ -20,8 +20,8 @@
         <TextBox HorizontalAlignment="Left" Margin="280,111,0,0" TextWrapping="Wrap" Name="firstname" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="280,138,0,0" TextWrapping="Wrap" x:Name="secondname" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="280,168,0,0" TextWrapping="Wrap" x:Name="username" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="280,198,0,0" TextWrapping="Wrap" x:Name="password" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="280,220,0,0" TextWrapping="Wrap" x:Name="repassword" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="280,198,0,0"  x:Name="password" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="280,220,0,0"  x:Name="repassword" VerticalAlignment="Top" Width="120"/>
         <Button Content="Register now" HorizontalAlignment="Left" Margin="243,266,0,0" VerticalAlignment="Top" Name="register" RenderTransformOrigin="0.4,-0.341" Click="register_Click"/>
     </Grid>
 </Page>

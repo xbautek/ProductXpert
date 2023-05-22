@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Animation;
 
 namespace ProductXpert
 {
@@ -29,11 +30,11 @@ namespace ProductXpert
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(login.Text))
+            if(string.IsNullOrEmpty(username.Text))
             {
                 MessageBox.Show("Enter your username!");
             }
-            else if(string.IsNullOrEmpty(password.Text))
+            else if(string.IsNullOrEmpty(password.Password))
             {
                 MessageBox.Show("Enter the password!");
             }
@@ -41,13 +42,13 @@ namespace ProductXpert
             {
                 try
                 {
-                    Employee first = new Employee(login.Text, password.Text);
+                    Employee first = new Employee(username.Text, password.Password);
 
                     SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
-                    SqlCommand cmd = new SqlCommand("select * from Pracownicy where login = @login and haslo = @password;",con);
+                    SqlCommand cmd = new SqlCommand("select * from Pracownicy where login = @username and haslo = @password;",con);
 
-                    cmd.Parameters.AddWithValue("@login", login.Text);
-                    cmd.Parameters.AddWithValue("@password", password.Text);
+                    cmd.Parameters.AddWithValue("@username", first.Username);
+                    cmd.Parameters.AddWithValue("@password", first.PasswordHash);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -56,6 +57,12 @@ namespace ProductXpert
                     if(dt.Rows.Count > 0)
                     {
                         MessageBox.Show("login successfull");
+                        
+                        MajorWindow major = new MajorWindow();
+                        major.Show();
+                        this.Close();
+                        
+
                     }
                     else
                     {
@@ -83,6 +90,13 @@ namespace ProductXpert
         private void register_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenNewPage();
+        }
+
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+
         }
     }
 }
