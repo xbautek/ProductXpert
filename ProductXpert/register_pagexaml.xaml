@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:ProductXpert"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="register_pagexaml">
+      Title="register_pagexaml"
+      
+      >
 
     <Grid>
         <Grid.Background>

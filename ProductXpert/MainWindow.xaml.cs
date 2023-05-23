@@ -85,14 +85,6 @@ namespace ProductXpert
         private void register_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenNewPage();
-        }
-
-
-        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //     System.Windows.Application.Current.Shutdown();
-        // }
-
-        
+        }      
     }
 }

@@ -8,17 +8,17 @@ namespace ProductXpert.Classes
 {
     internal class Materials
     {
-        public string Nazwa { get; set; }
-        public string Opis { get; set; }
-        public double Cena { get; set; }
-        public double Waga { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
+        public double Wage { get; set; }
 
-        public Materials(string nazwa, string opis, double cena, double waga)
+        public Materials(string n, string d, double p, double w)
         {
-            Nazwa = nazwa;
-            Opis = opis;
-            Cena = cena;
-            Waga = waga;
+            Name = n;
+            Description = d; 
+            Price = p; 
+            Wage = w;
         }
     }
 }
