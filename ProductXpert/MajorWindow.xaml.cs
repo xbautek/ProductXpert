@@ -23,5 +23,10 @@ namespace ProductXpert
         {
             InitializeComponent();
         }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
