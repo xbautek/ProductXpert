@@ -16,6 +16,7 @@
     <None Remove="Icons\calculate.png" />
     <None Remove="Icons\Clients.png" />
     <None Remove="Icons\close.png" />
+    <None Remove="Icons\close24.png" />
     <None Remove="Icons\construction.png" />
     <None Remove="Icons\delete.png" />
     <None Remove="Icons\done.png" />
@@ -42,6 +43,7 @@
     <Resource Include="Icons\calculate.png" />
     <Resource Include="Icons\Clients.png" />
     <Resource Include="Icons\close.png" />
+    <Resource Include="Icons\close24.png" />
     <Resource Include="Icons\construction.png" />
     <Resource Include="Icons\delete.png" />
     <Resource Include="Icons\done.png" />

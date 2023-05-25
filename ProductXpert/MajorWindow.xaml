@@ -15,9 +15,27 @@
         
         >
     <Grid>
-        <!--Border-->
         <Border Background="#FF8C949C" CornerRadius="20" />
+
         <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="570" />
+
+        </Grid.RowDefinitions>
+        <Grid x:Name="TitleBar"  Grid.Row="0">
+                <Border Background="#FF424141" CornerRadius="20,20,0,0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"/>
+                <Button  Style="{StaticResource CloseButton}" Background="#FF424141" BorderThickness="0" Name="Close_button"  Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Close">
+
+                    <Button.Content>
+                        <Image Source="/Icons/close24.png" Width="24" Height="24" Margin="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="center" Stretch="Uniform" />
+
+                    </Button.Content>
+                </Button>
+            </Grid>
+        
+        <!--Border-->
+        <Grid Grid.Row="1">
             <!--Base Grid-->
 
             <Grid.ColumnDefinitions>
@@ -26,9 +44,9 @@
 
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" HorizontalAlignment="Left" Width="200">
+            <Grid Grid.Row="1" HorizontalAlignment="Left" Width="200">
 
-                <Border Background="#FF567E82" CornerRadius="20,0,0,20"/>
+                <Border Background="#FF567E82" CornerRadius="0,0,0,20"/>
 
                 <StackPanel Height="460" Width="200">
                     <Button Style="{StaticResource CustomButtonStyle}"  BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Click="Home_Click" >
@@ -152,20 +170,14 @@
             </Grid>
 
 
-            <Grid Width="800" HorizontalAlignment="left" Grid.Column="1">
-                <ContentControl Grid.Column="1" x:Name="ContentContainer" />
+            <Grid Width="800" HorizontalAlignment="left" Grid.Column="1" Grid.Row="1">
 
-                <Grid>
-
-
-                    <Button Background="#FF8C949C" BorderThickness="0" Name="Close_button"  Width="48" Height="48" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Close">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Height="460">
                         
-                        <Button.Content>
-                            <Image Source="/Icons/close.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="center" Stretch="Uniform" />
+                    </Grid>
+                <ContentControl Grid.Column="1" x:Name="ContentContainer"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        </Button.Content>
-                    </Button>
-                </Grid>
+                
                 
             </Grid>
 
@@ -175,5 +187,6 @@
 
 
 
+    </Grid>
     </Grid>
 </Window>

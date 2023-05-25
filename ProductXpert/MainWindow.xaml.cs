@@ -85,6 +85,16 @@ namespace ProductXpert
         private void register_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenNewPage();
-        }      
+        }
+
+        private void Close_button(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

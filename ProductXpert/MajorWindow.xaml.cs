@@ -39,5 +39,10 @@ namespace ProductXpert
         {
             ContentContainer.Content = new Orders();
         }
+
+        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }
