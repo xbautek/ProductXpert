@@ -14,14 +14,17 @@
         Background="Transparent"
         >
 
+    <Grid>
+        <Border Background="#FF8C949C" CornerRadius="20" />
 
-    <Grid >
+        <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="200" />
             <RowDefinition Height="150" />
 
         </Grid.RowDefinitions>
-
+        
         
         <Grid Grid.Row="0" Height="200" VerticalAlignment="Top">
             <Grid Width="300" Height="200">
@@ -58,8 +61,11 @@
 
         <Grid Grid.Row="1" Height="150" VerticalAlignment="Top">
             <StackPanel VerticalAlignment="center" HorizontalAlignment="center">
-                <Button Margin="5" Content="Login" HorizontalAlignment="center"  VerticalAlignment="center" Width="72" Name="login_btn" Click="login_Click"/>
-                <Button Margin="5" Content="Register now" HorizontalAlignment="center"  VerticalAlignment="center" Name="register_Button" Click="register_Button_Click"/>
+
+                    <Button Content="Login" BorderThickness="0"   HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="login_btn" Click="login_Click" FontFamily="Montserrat Black"/>
+
+
+                    <Button BorderThickness="0" Margin="5" Content="Register now" HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="register_Button" Click="register_Button_Click"/>
 
             </StackPanel>
         </Grid>
@@ -67,16 +73,12 @@
 
 
 
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="White" Offset="0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        
 
 
         
 
+    </Grid>
     </Grid>
 
 

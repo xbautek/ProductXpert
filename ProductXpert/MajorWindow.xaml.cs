@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProductXpert.ViewModel;
 
 namespace ProductXpert
 {
@@ -27,6 +28,16 @@ namespace ProductXpert
         private void Close(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            ContentContainer.Content = new Home();
+        }
+
+        private void Orders_Click(object sender, RoutedEventArgs e)
+        {
+            ContentContainer.Content = new Orders();
         }
     }
 }

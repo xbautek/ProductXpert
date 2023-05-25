@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Montserrat-Italic-VariableFont_wght.ttf" />
+    <None Remove="Fonts\Montserrat-VariableFont_wght.ttf" />
+    <None Remove="Fonts\static\Montserrat-Italic.ttf" />
+    <None Remove="Fonts\static\Montserrat-Medium.ttf" />
     <None Remove="Icons\arrow_back.png" />
     <None Remove="Icons\calculate.png" />
     <None Remove="Icons\Clients.png" />
@@ -30,6 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Montserrat-Italic-VariableFont_wght.ttf" />
+    <Resource Include="Fonts\Montserrat-VariableFont_wght.ttf" />
+    <Resource Include="Fonts\static\Montserrat-Italic.ttf" />
+    <Resource Include="Fonts\static\Montserrat-Medium.ttf" />
     <Resource Include="Icons\arrow_back.png" />
     <Resource Include="Icons\calculate.png" />
     <Resource Include="Icons\Clients.png" />
