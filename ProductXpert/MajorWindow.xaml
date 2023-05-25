@@ -13,6 +13,7 @@
         WindowStyle="None"
         Background="Transparent"
         
+        
         >
     <Grid>
         <Border  CornerRadius="20" />
@@ -57,7 +58,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/Home.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Home" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Home" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
                                 
                         </Button.Content>
@@ -71,7 +72,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/orders.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Zamówienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Zamówienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -85,7 +86,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/inventory.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="center" Stretch="Uniform" />
-                                <TextBlock Text="Produkty" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Produkty" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -99,7 +100,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image  Source="/Icons/Construction.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Do zrobienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Do zrobienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -113,7 +114,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/Warehouse.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Materiały" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Materiały" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -127,7 +128,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/clients.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Klienci" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Klienci" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -141,13 +142,13 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/calculate.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Kalkulator" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Kalkulator" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
                     </Button>
 
-                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" >
+                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Click="Settings_Click" >
                         <Button.Content>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -155,8 +156,8 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/settings.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Ustawienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Grid>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat"  Text="Ustawienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
 
                         </Button.Content>
                     </Button>
@@ -170,8 +171,9 @@
             </Grid>
 
 
-                <Grid Background="#FF8C949C" Width="800" HorizontalAlignment="left" Grid.Column="1" Grid.Row="1">
+                <Grid  Width="800" HorizontalAlignment="left" Grid.Column="1" Grid.Row="1">
 
+                    <Border Background="#FF8C949C" CornerRadius="0,0,20,0"/>
                     <Grid Width="700" Height="450" HorizontalAlignment="center" VerticalAlignment="Center">
 
                         <ContentControl  Opacity="1" Panel.ZIndex="1" Grid.Column="1" x:Name="ContentContainer"  VerticalAlignment="Center" HorizontalAlignment="Center"/>

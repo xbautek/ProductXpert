@@ -7,38 +7,73 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Fonts\Montserrat-Italic-VariableFont_wght.ttf" />
-    <None Remove="Fonts\Montserrat-VariableFont_wght.ttf" />
-    <None Remove="Fonts\static\Montserrat-Italic.ttf" />
-    <None Remove="Fonts\static\Montserrat-Medium.ttf" />
-    <None Remove="Icons\arrow_back.png" />
-    <None Remove="Icons\calculate.png" />
-    <None Remove="Icons\Clients.png" />
-    <None Remove="Icons\close.png" />
-    <None Remove="Icons\close24.png" />
-    <None Remove="Icons\construction.png" />
-    <None Remove="Icons\delete.png" />
-    <None Remove="Icons\done.png" />
-    <None Remove="Icons\home.png" />
-    <None Remove="Icons\inventory.png" />
-    <None Remove="Icons\light_mode.png" />
-    <None Remove="Icons\logout.png" />
-    <None Remove="Icons\orders.png" />
-    <None Remove="Icons\search.png" />
-    <None Remove="Icons\settings.png" />
-    <None Remove="Icons\warehouse.png" />
-  </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fonts\Montserrat-Italic-VariableFont_wght.ttf" />
-    <Resource Include="Fonts\Montserrat-VariableFont_wght.ttf" />
-    <Resource Include="Fonts\static\Montserrat-Italic.ttf" />
-    <Resource Include="Fonts\static\Montserrat-Medium.ttf" />
+    <Resource Include="Fonts\Montserrat-Italic-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Montserrat-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-MediumItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\static\Montserrat-ThinItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Icons\arrow_back.png" />
     <Resource Include="Icons\calculate.png" />
     <Resource Include="Icons\Clients.png" />

@@ -71,20 +71,13 @@ namespace ProductXpert
             }
         }
 
-        private void OpenNewPage()
-        {
-            var newWindow = new Window
-            {
-                Title = "Nowa Strona",
-                Content = new register_pagexaml()
-            };
-            newWindow.ShowDialog();
-        }
+        
 
 
         private void register_Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenNewPage();
+            var window = new RegisterWindow();
+            window.ShowDialog();
         }
 
         private void Close_button(object sender, RoutedEventArgs e)

@@ -23,7 +23,7 @@
 
 
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextAlignment="Center" TextWrapping="Wrap" Text="Witaj w aplikacji ProductXpert. Zarządzanie produktami nigdy nie będzie prostsze." VerticalAlignment="Center" Width="615"/>
+            <TextBox FontFamily="/Fonts/static/#Montserrat" HorizontalAlignment="Center" FontSize="45" Background="Transparent" BorderThickness="0" TextAlignment="Center" TextWrapping="Wrap" Text="Witaj w aplikacji ProductXpert. Zarządzanie produktami nigdy nie będzie prostsze." VerticalAlignment="Center" Width="671" Height="269"/>
 
 
         </Grid>

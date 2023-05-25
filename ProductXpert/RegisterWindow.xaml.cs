@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductXpert.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -12,21 +13,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.Entity.Infrastructure;
-using ProductXpert.Classes;
 
 namespace ProductXpert
 {
     /// <summary>
-    /// Interaction logic for register_pagexaml.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class register_pagexaml : Page
+    public partial class RegisterWindow : Window
     {
-        public register_pagexaml()
+        public RegisterWindow()
         {
             InitializeComponent();
+        }
+
+        private void Close_button(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void register_Click(object sender, RoutedEventArgs e)
@@ -49,7 +52,7 @@ namespace ProductXpert
                 {
                     Employee r = new(firstname.Text, secondname.Text, username.Text, password.Password);
                     SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
-                    
+
                     SqlCommand cmd = new SqlCommand($"Insert into Pracownicy values ('{r.Name}','{r.SecondName}','{r.Username}','{r.PasswordHash}');", con);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -57,13 +60,13 @@ namespace ProductXpert
 
                     da.Fill(dt);
 
-                     cmd = new SqlCommand($"select * from Pracownicy where login = @username and haslo = @password;", con);
+                    cmd = new SqlCommand($"select * from Pracownicy where login = @username and haslo = @password;", con);
 
                     cmd.Parameters.AddWithValue("@username", r.Username);
                     cmd.Parameters.AddWithValue("@password", r.PasswordHash);
 
-                     da = new SqlDataAdapter(cmd);
-                     dt = new DataTable();
+                    da = new SqlDataAdapter(cmd);
+                    dt = new DataTable();
 
                     da.Fill(dt);
                     if (dt.Rows.Count > 0)
@@ -80,6 +83,11 @@ namespace ProductXpert
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

@@ -57,10 +57,10 @@
                             <ColumnDefinition Width="150"/>
                         </Grid.ColumnDefinitions>
 
-                            <Label FontFamily="{StaticResource test}" Grid.Row="0" Grid.Column="0" Content="Username" HorizontalAlignment="center"  VerticalAlignment="center"/>
+                            <Label FontFamily="/Fonts/static/#Montserrat" Grid.Row="0" Grid.Column="0" Content="Username" HorizontalAlignment="center"  VerticalAlignment="center"/>
                         <TextBox Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="5" Width="140" Height="30" Name="username" />
                         <PasswordBox Grid.Row="1" Grid.Column="1" Margin="5" Width="140" Height="30" Name="password" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Password" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            <Label FontFamily="/Fonts/static/#Montserrat" Grid.Row="1" Grid.Column="0" Content="Password" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
 
                     </Grid>
                     
@@ -79,10 +79,10 @@
         <Grid Grid.Row="2" Height="150" VerticalAlignment="Top">
             <StackPanel VerticalAlignment="center" HorizontalAlignment="center">
 
-                    <Button Style="{StaticResource CustomButtonStyle}" Content="Login" BorderThickness="2"   HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="login_btn" Click="login_Click" FontFamily="Montserrat Black"/>
+                    <Button Style="{StaticResource CustomButtonStyle}" Content="Login" FontFamily="/Fonts/static/#Montserrat" BorderThickness="2"   HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="login_btn" Click="login_Click"/>
 
 
-                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="2" Margin="5" Content="Register now" HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="register_Button" Click="register_Button_Click"/>
+                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="2" Margin="5" Content="Register now" FontFamily="/Fonts/static/#Montserrat" HorizontalAlignment="center"  VerticalAlignment="center" Height="35" Width="100" Name="register_Button" Click="register_Button_Click"/>
 
             </StackPanel>
         </Grid>

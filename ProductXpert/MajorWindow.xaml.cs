@@ -24,9 +24,8 @@ namespace ProductXpert
         public MajorWindow()
         {
             InitializeComponent();
-            var home = new Home();
 
-            // Dodawanie kontrolki do kontenera
+            var home = new Home();
             ContentContainer.Content = home;
         }
 
