@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ProductXpert.ViewModel.Orders"
+﻿<UserControl x:Class="ProductXpert.ViewModel.Materials"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -23,7 +23,7 @@
 
 
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Zamowienia" VerticalAlignment="Center" Width="615"/>
+            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Materiały" VerticalAlignment="Center" Width="615"/>
 
 
         </Grid>

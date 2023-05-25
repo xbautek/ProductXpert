@@ -7,8 +7,6 @@
              mc:Ignorable="d" 
              Style="{StaticResource ResourceKey=basic}"
              Storyboard.TargetName="Opacity"
-             Width="700"
-             Height="460"
              >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,24 +15,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ContentGrid" Opacity="0" Background="#FF567E82">
-            <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
+    <Grid Width="700" Height="450" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-            <Grid.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetProperty="Opacity"
-                                From="0" To="1" Duration="0:0:0.2" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Grid.Triggers>
+        <Border Style="{StaticResource ResourceKey=radius}"/>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ContentGrid">
+
+
+            <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
+            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextAlignment="Center" TextWrapping="Wrap" Text="Witaj w aplikacji ProductXpert. Zarządzanie produktami nigdy nie będzie prostsze." VerticalAlignment="Center" Width="615"/>
+
+
         </Grid>
-        
-        
+
+
 
     </Grid>
 </UserControl>
