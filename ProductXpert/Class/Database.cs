@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Markup;
 
 
-namespace ProductXpert.Classes
+namespace ProductXpert
 {
     internal class Database
     {

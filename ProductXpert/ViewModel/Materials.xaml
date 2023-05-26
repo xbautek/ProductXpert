@@ -23,8 +23,29 @@
 
 
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Materiały" VerticalAlignment="Center" Width="615"/>
+            <Grid>
+                <Border Background="Transparent" Width="700" Height="450" CornerRadius="20"/>
+                <Grid Height="430" Width="660">
+                    <DataGrid BorderThickness="0" IsReadOnly="True" Style="{StaticResource ResourceKey=dataStyle}" Name="MaterialsList" KeyDown="DataGrid_KeyDown">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Width="35" Header =" Id" Binding="{Binding IdMaterialu}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="200" Header =" Nazwa" Binding="{Binding Nazwa}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="260" Header =" Opis" Binding="{Binding Opis}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="50" Header =" Cena" Binding="{Binding Cena}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="*"  Header = " Waga" Binding="{Binding Waga}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                        </DataGrid.Columns>
 
+
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Height="40" Width="100" Margin="10,0,20,10"  VerticalAlignment="bottom" HorizontalAlignment="left" Background="Black"  Content="XDXDD"/>
+                        <Button Height="40" Width="100" Margin="0,0,20,10" VerticalAlignment="bottom" HorizontalAlignment="left" Background="Black"  Content="XDXDD"/>
+                        <Button Height="40" Width="100" Margin="0,0,20,10" VerticalAlignment="bottom" HorizontalAlignment="left" Background="Black"  Content="XDXDD"/>
+                    </StackPanel>
+                    
+                </Grid>
+            </Grid>
+            
 
         </Grid>
 

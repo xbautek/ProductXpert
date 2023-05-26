@@ -58,11 +58,11 @@
                             <Label FontFamily="/Fonts/static/#Montserrat" Grid.Column="0" Grid.Row="3" FontSize="14" Content="Password" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
                             <Label FontFamily="/Fonts/static/#Montserrat" Grid.Column="0" Grid.Row="4" FontSize="14" Content="Retype password" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
 
-                            <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"  TextWrapping="Wrap" Name="firstname" VerticalAlignment="Center" Height="25" Width="120"/>
-                            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  TextWrapping="Wrap" x:Name="secondname" VerticalAlignment="Center" Height="25" Width="120"/>
-                            <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" x:Name="username" VerticalAlignment="Center" Height="25" Width="120"/>
-                            <PasswordBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"   x:Name="password" VerticalAlignment="Center" Height="25" Width="120"/>
-                            <PasswordBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"   x:Name="repassword" VerticalAlignment="Center" Height="25" Width="120"/>
+                            <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"  TextWrapping="Wrap" Name="firstname" VerticalAlignment="Center" Height="25" Width="120"/>
+                            <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  TextWrapping="Wrap" x:Name="secondname" VerticalAlignment="Center" Height="25" Width="120"/>
+                            <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" x:Name="username" VerticalAlignment="Center" Height="25" Width="120"/>
+                            <PasswordBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"   x:Name="password" VerticalAlignment="Center" Height="25" Width="120"/>
+                            <PasswordBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"   x:Name="repassword" VerticalAlignment="Center" Height="25" Width="120"/>
                         </Grid>
 
                         <Button Style="{StaticResource CustomButtonStyle}" FontFamily="/Fonts/static/#Montserrat" FontSize="15"  Width="135" Height="40"  Margin="0,30,0,0" Content="Register now" HorizontalAlignment="Center"  VerticalAlignment="Center" Name="register"  Click="register_Click"/>

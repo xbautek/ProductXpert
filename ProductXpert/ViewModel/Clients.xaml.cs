@@ -24,5 +24,7 @@ namespace ProductXpert.ViewModel
         {
             InitializeComponent();
         }
+
+       
     }
 }

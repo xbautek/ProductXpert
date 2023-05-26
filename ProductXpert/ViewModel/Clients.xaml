@@ -23,7 +23,7 @@
 
 
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Zamowienia" VerticalAlignment="Center" Width="615"/>
+            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Klienci" VerticalAlignment="Center" Width="615"/>
 
 
         </Grid>

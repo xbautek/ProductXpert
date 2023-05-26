@@ -17,6 +17,37 @@
 
 
     </Style>
+    <!-- <Setter Property="AlternatingRowBackground" Value="#ff2c3e50"/> <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/> VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="30" MaxHeight="500" Width="500" -->
+    <Style x:Key="dataStyle"  TargetType="DataGrid">
+        <Setter Property="HorizontalGridLinesBrush" Value="Black"/>
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="RowBackground" Value="#FF567E82"/>
+        <Setter Property="RowHeight" Value="25"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MaxHeight" Value="360"/>
+        <Setter Property="Width" Value="700"/>
+        <Setter Property="FontFamily" Value="/Fonts/static/#Montserrat"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style x:Key="header" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#FF567E82"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+    </Style>
+
+
 
     <Style x:Key="CloseButton" TargetType="Button">
         <Setter Property="Template">
