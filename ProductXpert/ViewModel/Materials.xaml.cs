@@ -53,5 +53,91 @@ namespace ProductXpert.ViewModel
                 grid.UnselectAll();
             }
         }
+
+        private void Refresh()
+        {
+            using (ProductXpertContext _context = new ProductXpertContext())
+            {
+                MyMaterials = _context.Materialy
+                    .Select(m => new Materialy
+                    {
+                        IdMaterialu = m.IdMaterialu,
+                        Nazwa = m.Nazwa,
+                        Opis = m.Opis,
+                        Cena = m.Cena,
+                        Waga = m.Waga
+                    })
+                    .ToList();
+            }
+
+            MaterialsList.AutoGenerateColumns = false;
+            MaterialsList.ItemsSource = MyMaterials;
+        }
+
+        private void Delete_click(object sender, RoutedEventArgs e)
+        {
+            if (MaterialsList.SelectedItem is Materialy selectedMaterial)
+            {
+                MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten rekord?", "Potwierdzenie usunięcia", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (ProductXpertContext _context = new ProductXpertContext())
+                    {
+                        var materialToRemove = _context.Materialy.FirstOrDefault(m => m.IdMaterialu == selectedMaterial.IdMaterialu);
+                        if (materialToRemove != null)
+                        {
+                            _context.Materialy.Remove(materialToRemove);
+                            _context.SaveChanges();
+                        }
+                    }
+                }
+            }
+            Refresh();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Materialy newMaterial = new Materialy
+            {
+                Nazwa = nametxt.Text,
+                Opis = desctxt.Text,
+                Cena = Convert.ToDecimal(pricetxt.Text),
+                Waga = Convert.ToDecimal(weighttxt.Text)
+            };
+
+            using (ProductXpertContext _context = new ProductXpertContext())
+            {
+                _context.Materialy.Add(newMaterial);
+                _context.SaveChanges();
+            }
+            Refresh();
+        }
+
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+            using (ProductXpertContext _context = new ProductXpertContext())
+            {
+                MyMaterials = _context.Materialy
+                    .Where(m => m.Nazwa == selecttxt.Text)
+                    .Select(m => new Materialy
+                    {
+                        IdMaterialu = m.IdMaterialu,
+                        Nazwa = m.Nazwa,
+                        Opis = m.Opis,
+                        Cena = m.Cena,
+                        Waga = m.Waga
+                    })
+                    .ToList();
+            }
+
+            MaterialsList.AutoGenerateColumns = false;
+            MaterialsList.ItemsSource = MyMaterials;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
     }
 }

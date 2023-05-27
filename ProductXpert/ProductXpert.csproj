@@ -14,6 +14,12 @@
     <Page Remove="Classes\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Icons\add.png" />
+    <None Remove="Icons\refresh.png" />
+    <None Remove="Icons\search.svg" />
+  </ItemGroup>
+
   
 
   <ItemGroup>
@@ -86,6 +92,7 @@
     <Resource Include="Fonts\static\Montserrat-ThinItalic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Icons\add.png" />
     <Resource Include="Icons\arrow_back.png" />
     <Resource Include="Icons\calculate.png" />
     <Resource Include="Icons\Clients.png" />
@@ -99,7 +106,9 @@
     <Resource Include="Icons\light_mode.png" />
     <Resource Include="Icons\logout.png" />
     <Resource Include="Icons\orders.png" />
+    <Resource Include="Icons\refresh.png" />
     <Resource Include="Icons\search.png" />
+    <Resource Include="Icons\search.svg" />
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\warehouse.png" />
   </ItemGroup>
