@@ -25,6 +25,29 @@ namespace ProductXpert.ViewModel
             InitializeComponent();
         }
 
-       
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Delete_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+
 
 namespace ProductXpert;
 
@@ -26,7 +33,14 @@ public partial class ProductXpertContext : DbContext
     public  DbSet<Zamowienium> Zamowienia { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = ProductXpert;");
+    {
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -145,4 +159,17 @@ public partial class ProductXpertContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    
+}
+
+public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ProductXpertContext>
+{
+    public ProductXpertContext CreateDbContext(string[] args)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<ProductXpertContext>();
+        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
+
+        return new ProductXpertContext(optionsBuilder.Options);
+    }
 }
