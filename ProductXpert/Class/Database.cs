@@ -6,53 +6,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using ProductXpert.ViewModel;
 
 
 namespace ProductXpert
 {
     internal class Database
     {
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
         public Database()
         {
         }
 
-        public void Execute(string s)
+        public static bool CheckUser(string username, string password)
         {
-            SqlCommand cmd = new SqlCommand(s, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            using (ProductXpertContext _context = new ProductXpertContext())
+            {
+                Pracownicy first = new Pracownicy(username, password);
+                bool isRecordExists = _context.Pracownicy.Any(p => p.Login == first.Login && first.Haslo == p.Haslo);
+                return isRecordExists;
+            }
         }
 
-        public void SelectMaterials(string s)
+        public static void AddUser(string name, string secondname, string username, string password)
         {
-            SqlCommand cmd = new SqlCommand(s, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+
+            Pracownicy pracownik = new Pracownicy(name, secondname, username, password);
+
+
+            using (ProductXpertContext _context = new ProductXpertContext())
+                {
+                    _context.Pracownicy.Add(pracownik);
+                    _context.SaveChanges();
+                }
+
+            
         }
 
-
-        public bool CheckUser(string username, string password)
-        {
-            Employee first = new Employee(username, password);
-
-            SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("select * from Pracownicy where login = @username and haslo = @password;", con);
-
-            cmd.Parameters.AddWithValue("@username", first.Username);
-            cmd.Parameters.AddWithValue("@password", first.PasswordHash);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-
-            da.Fill(dt);
-
-            if (dt.Rows.Count > 0)
-                return true;
-            else
-                return false;
-        }
+        
     }
 }

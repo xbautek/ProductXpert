@@ -41,22 +41,14 @@ namespace ProductXpert
             else
             {
                 try
-                {
-                    Employee first = new Employee(username.Text, password.Password);
-
-                    Database d = new();
-                    
-
-
-                    if(d.CheckUser(username.Text, password.Password))
+                { 
+                    if(Database.CheckUser(username.Text, password.Password))
                     {
                         MessageBox.Show("login successfull");
                         
                         MajorWindow major = new MajorWindow();
                         major.Show();
                         this.Close();
-                        
-
                     }
                     else
                     {

@@ -224,5 +224,17 @@ namespace ProductXpert
             storyboard.Begin();
             await Task.Delay(1000);
         }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz się wylogować?", "Potwierdzenie wylogowania", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                this.Close();
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace ProductXpert
             this.Close();
         }
 
+        
         private void register_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(username.Text))
@@ -49,33 +50,8 @@ namespace ProductXpert
             {
                 try
                 {
-                    Employee r = new(firstname.Text, secondname.Text, username.Text, password.Password);
-                    SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=ProductXpert;Integrated Security=True");
-
-                    SqlCommand cmd = new SqlCommand($"Insert into Pracownicy values ('{r.Name}','{r.SecondName}','{r.Username}','{r.PasswordHash}');", con);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-
-                    da.Fill(dt);
-
-                    cmd = new SqlCommand($"select * from Pracownicy where login = @username and haslo = @password;", con);
-
-                    cmd.Parameters.AddWithValue("@username", r.Username);
-                    cmd.Parameters.AddWithValue("@password", r.PasswordHash);
-
-                    da = new SqlDataAdapter(cmd);
-                    dt = new DataTable();
-
-                    da.Fill(dt);
-                    if (dt.Rows.Count > 0)
-                    {
-                        MessageBox.Show("User succesfully added.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong please try again");
-                    }
+                    Database.AddUser(firstname.Text, secondname.Text, username.Text, password.Password);
+                    MessageBox.Show("User successfully added!");
                 }
                 catch (Exception ex)
                 {

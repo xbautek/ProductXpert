@@ -98,41 +98,61 @@ namespace ProductXpert.ViewModel
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            Materialy newMaterial = new Materialy
+            if (string.IsNullOrEmpty(nametxt.Text) || string.IsNullOrEmpty(desctxt.Text) || string.IsNullOrEmpty(pricetxt.Text) || string.IsNullOrEmpty(weighttxt.Text))
             {
-                Nazwa = nametxt.Text,
-                Opis = desctxt.Text,
-                Cena = Convert.ToDecimal(pricetxt.Text),
-                Waga = Convert.ToDecimal(weighttxt.Text)
-            };
-
-            using (ProductXpertContext _context = new ProductXpertContext())
-            {
-                _context.Materialy.Add(newMaterial);
-                _context.SaveChanges();
+                MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
             }
-            Refresh();
+            else
+            {
+                Materialy newMaterial = new Materialy
+                {
+                    Nazwa = nametxt.Text,
+                    Opis = desctxt.Text,
+                    Cena = Convert.ToDecimal(pricetxt.Text),
+                    Waga = Convert.ToDecimal(weighttxt.Text)
+                };
+
+                using (ProductXpertContext _context = new ProductXpertContext())
+                {
+                    _context.Materialy.Add(newMaterial);
+                    _context.SaveChanges();
+                }
+                Refresh();
+
+                nametxt.Text = "";
+                desctxt.Text = "";
+                pricetxt.Text = "";
+                weighttxt.Text = "";
+            }
         }
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            using (ProductXpertContext _context = new ProductXpertContext())
+            if (string.IsNullOrEmpty(selecttxt.Text))
             {
-                MyMaterials = _context.Materialy
-                    .Where(m => m.Nazwa == selecttxt.Text)
-                    .Select(m => new Materialy
-                    {
-                        IdMaterialu = m.IdMaterialu,
-                        Nazwa = m.Nazwa,
-                        Opis = m.Opis,
-                        Cena = m.Cena,
-                        Waga = m.Waga
-                    })
-                    .ToList();
+                MessageBox.Show("Uzupełnij nazwę, po której chcesz wyszukać produkt!");
             }
+            else
+            {
+                using (ProductXpertContext _context = new ProductXpertContext())
+                {
+                    MyMaterials = _context.Materialy
+                        .Where(m => m.Nazwa == selecttxt.Text)
+                        .Select(m => new Materialy
+                        {
+                            IdMaterialu = m.IdMaterialu,
+                            Nazwa = m.Nazwa,
+                            Opis = m.Opis,
+                            Cena = m.Cena,
+                            Waga = m.Waga
+                        })
+                        .ToList();
+                }
 
-            MaterialsList.AutoGenerateColumns = false;
-            MaterialsList.ItemsSource = MyMaterials;
+                MaterialsList.AutoGenerateColumns = false;
+                MaterialsList.ItemsSource = MyMaterials;
+                selecttxt.Text = "";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
