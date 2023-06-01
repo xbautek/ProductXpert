@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProductXpert.Class;
+using ProductXpert.ViewModel;
+using ProductXpert;
 
 namespace ProductXpert.ViewModel
 {
@@ -20,7 +23,7 @@ namespace ProductXpert.ViewModel
     /// </summary>
     public partial class Materials : UserControl
     {
-        public List<Materialy> MyMaterials { get; set; }
+        public List<Material> MyMaterials { get; set; }
 
         public Materials()
         {
@@ -28,14 +31,14 @@ namespace ProductXpert.ViewModel
 
             using (ProductXpertContext _context = new ProductXpertContext())
             {
-                MyMaterials = _context.Materialy
-                    .Select(m => new Materialy
+                MyMaterials = _context.Materials
+                    .Select(m => new Material
                     {
-                        IdMaterialu = m.IdMaterialu,
-                        Nazwa = m.Nazwa,
-                        Opis = m.Opis,
-                        Cena = m.Cena,
-                        Waga = m.Waga
+                        MaterialId = m.MaterialId,
+                        MaterialName = m.MaterialName,
+                        Description = m.Description,
+                        Price = m.Price,
+                        Weight = m.Weight
                     })
                     .ToList();
             }
@@ -58,14 +61,14 @@ namespace ProductXpert.ViewModel
         {
             using (ProductXpertContext _context = new ProductXpertContext())
             {
-                MyMaterials = _context.Materialy
-                    .Select(m => new Materialy
+                MyMaterials = _context.Materials
+                    .Select(m => new Material
                     {
-                        IdMaterialu = m.IdMaterialu,
-                        Nazwa = m.Nazwa,
-                        Opis = m.Opis,
-                        Cena = m.Cena,
-                        Waga = m.Waga
+                        MaterialId = m.MaterialId,
+                        MaterialName = m.MaterialName,
+                        Description = m.Description,
+                        Price = m.Price,
+                        Weight = m.Weight
                     })
                     .ToList();
             }
@@ -76,7 +79,7 @@ namespace ProductXpert.ViewModel
 
         private void Delete_click(object sender, RoutedEventArgs e)
         {
-            if (MaterialsList.SelectedItem is Materialy selectedMaterial)
+            if (MaterialsList.SelectedItem is Material selectedMaterial)
             {
                 MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten rekord?", "Potwierdzenie usunięcia", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -84,10 +87,10 @@ namespace ProductXpert.ViewModel
                 {
                     using (ProductXpertContext _context = new ProductXpertContext())
                     {
-                        var materialToRemove = _context.Materialy.FirstOrDefault(m => m.IdMaterialu == selectedMaterial.IdMaterialu);
+                        var materialToRemove = _context.Materials.FirstOrDefault(m => m.MaterialId == selectedMaterial.MaterialId);
                         if (materialToRemove != null)
                         {
-                            _context.Materialy.Remove(materialToRemove);
+                            _context.Materials.Remove(materialToRemove);
                             _context.SaveChanges();
                         }
                     }
@@ -104,17 +107,17 @@ namespace ProductXpert.ViewModel
             }
             else
             {
-                Materialy newMaterial = new Materialy
+                Material newMaterial = new Material
                 {
-                    Nazwa = nametxt.Text,
-                    Opis = desctxt.Text,
-                    Cena = Convert.ToDecimal(pricetxt.Text),
-                    Waga = Convert.ToDecimal(weighttxt.Text)
+                    MaterialName = nametxt.Text,
+                    Description = desctxt.Text,
+                    Price = Convert.ToDecimal(pricetxt.Text),
+                    Weight = Convert.ToDecimal(weighttxt.Text)
                 };
 
                 using (ProductXpertContext _context = new ProductXpertContext())
                 {
-                    _context.Materialy.Add(newMaterial);
+                    _context.Materials.Add(newMaterial);
                     _context.SaveChanges();
                 }
                 Refresh();
@@ -136,15 +139,15 @@ namespace ProductXpert.ViewModel
             {
                 using (ProductXpertContext _context = new ProductXpertContext())
                 {
-                    MyMaterials = _context.Materialy
-                        .Where(m => m.Nazwa == selecttxt.Text)
-                        .Select(m => new Materialy
+                    MyMaterials = _context.Materials
+                        .Where(m => m.MaterialName == selecttxt.Text)
+                        .Select(m => new Material
                         {
-                            IdMaterialu = m.IdMaterialu,
-                            Nazwa = m.Nazwa,
-                            Opis = m.Opis,
-                            Cena = m.Cena,
-                            Waga = m.Waga
+                            MaterialId = m.MaterialId,
+                            MaterialName = m.MaterialName,
+                            Description = m.Description,
+                            Price = m.Price,
+                            Weight = m.Weight
                         })
                         .ToList();
                 }

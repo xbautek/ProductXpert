@@ -9,7 +9,7 @@ using System.Windows.Markup;
 using ProductXpert.ViewModel;
 
 
-namespace ProductXpert
+namespace ProductXpert.Class
 {
     internal class Database
     {
@@ -21,27 +21,26 @@ namespace ProductXpert
         {
             using (ProductXpertContext _context = new ProductXpertContext())
             {
-                Pracownicy first = new Pracownicy(username, password);
-                bool isRecordExists = _context.Pracownicy.Any(p => p.Login == first.Login && first.Haslo == p.Haslo);
+                Employee first = new Employee(username, password);
+                bool isRecordExists = _context.Employees.Any(p => p.Username == first.Username && first.Password == p.Password);
                 return isRecordExists;
             }
         }
 
         public static void AddUser(string name, string secondname, string username, string password)
         {
-
-            Pracownicy pracownik = new Pracownicy(name, secondname, username, password);
+            Employee pracownik = new Employee(name, secondname, username, password);
 
 
             using (ProductXpertContext _context = new ProductXpertContext())
-                {
-                    _context.Pracownicy.Add(pracownik);
-                    _context.SaveChanges();
-                }
+            {
+                _context.Employees.Add(pracownik);
+                _context.SaveChanges();
+            }
 
-            
+
         }
 
-        
+
     }
 }

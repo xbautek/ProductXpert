@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Animation;
+using ProductXpert.Class;
+
 
 namespace ProductXpert
 {

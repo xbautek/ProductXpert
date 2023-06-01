@@ -1,40 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Security.Policy;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 
-namespace ProductXpert;
+namespace ProductXpert.Class;
 
-public partial class Pracownicy
+public partial class Employee
 {
-    public int Id { get; set; }
+    public int EmployeeId { get; set; }
 
-    public string? Imie { get; set; }
+    public string LastName { get; set; } = null!;
 
-    public string? Nazwisko { get; set; }
+    public string FirstName { get; set; } = null!;
 
-    public string Login { get; set; } = null!;
+    public string Username { get; set; } = null!;
 
-    public string Haslo { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
-    public Pracownicy()
+    public Employee(string lastName, string firstName, string username, string password)
     {
+        LastName = lastName;
+        FirstName = firstName;
+        Username = username;
+        Password = GeneratePasswordHash(password);
     }
 
-    public Pracownicy(string name, string secondName, string login, string password)
+    public Employee(string username, string password)
     {
-        Imie = name;
-        Nazwisko = secondName;
-        Login = login;
-        Haslo = GeneratePasswordHash(password);
-    }
-
-    public Pracownicy(string login, string password)
-    {
-        Login = login;
-        Haslo = GeneratePasswordHash(password);
+        Username = username;
+        Password = GeneratePasswordHash(password);
     }
 
     private string GeneratePasswordHash(string password)
@@ -68,7 +63,7 @@ public partial class Pracownicy
             string inputHash = BitConverter.ToString(inputHashBytes).Replace("-", "");
 
             // Porównaj skróty hasła
-            return Haslo.Equals(inputHash);
+            return Password.Equals(inputHash);
         }
     }
 }
