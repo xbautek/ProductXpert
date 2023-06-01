@@ -51,7 +51,6 @@ namespace ProductXpert.ViewModel
         {
             if (e.Key == Key.Escape)
             {
-                // Usunięcie zaznaczenia z aktualnie zaznaczonego elementu
                 DataGrid grid = (DataGrid)sender;
                 grid.UnselectAll();
             }

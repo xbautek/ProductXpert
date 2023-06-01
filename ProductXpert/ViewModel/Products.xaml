@@ -16,19 +16,143 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Width="700" Height="450" VerticalAlignment="Center" HorizontalAlignment="Center">
-
         <Border Style="{StaticResource ResourceKey=radius}"/>
-
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ContentGrid">
-
-
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Produkty" VerticalAlignment="Center" Width="615"/>
+            <Grid>
+                <Border Background="Transparent" Width="700" Height="450" CornerRadius="20"/>
+                <Grid Height="430" Width="660">
+
+                    <DataGrid  Width="660" BorderThickness="0" IsReadOnly="True" Style="{StaticResource ResourceKey=dataStyle}" Name="ProductsList" KeyDown="DataGrid_KeyDown">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="35" Header="Id" Binding="{Binding ProductId}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="150" Header="Materiał" Binding="{Binding MaterialName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="150" Header="Nazwa" Binding="{Binding ProductName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="80" Header="Cena za szt." Binding="{Binding UnitPrice}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="110" Header="Ilość" Binding="{Binding Amount}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="*" Header="Minimalna ilość" Binding="{Binding MinimalAmount}" HeaderStyle="{StaticResource ResourceKey=header}" />
+
+                        </DataGrid.Columns>
 
 
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Width="30"  Height="25"  Style="{StaticResource ResourceKey=DataButton}" Margin="0,0,5,55" Click="Add_Click">
+                            <Button.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Icons/add.png" Width="30" Height="25" Margin="0" Grid.Column="0" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                        <Grid>
+                            <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,55">
+                                <Border Background="#FF8C949C" Height="25" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="140" Name="materialnametxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                        <Grid>
+                            <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,55">
+                                <Border Background="#FF8C949C" Height="25" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="140" Name="nametxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+
+
+                        <Grid>
+                            <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,55">
+                                <Border Background="#FF8C949C" Height="25" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="75" Name="pricetxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+                        <Grid>
+                            <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,55">
+                                <Border Background="#FF8C949C" Height="25" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="100" Name="amounttxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+                        <Grid>
+                            <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,55">
+                                <Border Background="#FF8C949C" Height="25" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="100" Name="minimalamounttxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Grid Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                                <Border Background="#FF8C949C" Height="30" CornerRadius="10">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="95" Name="selecttxt">
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+                        <Button Style="{StaticResource ResourceKey=DataButton}" Margin="5,0,0,10" Click="Select_Click">
+                            <Button.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Icons/search.png" Width="40" Height="35" Margin="3,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Szukaj" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                        <Button Style="{StaticResource ResourceKey=DataButton}" Margin="10,0,0,10" Click="Refresh_Click">
+                            <Button.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Icons/refresh.png" Width="40" Height="35" Margin="3,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Odśwież" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                        <Button Style="{StaticResource ResourceKey=DataButton}" Margin="10,10,0,10" Click="Delete_click">
+                            <Button.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Icons/delete.png" Margin="4,0,0,0" Width="40" Height="35" Grid.Column="0" HorizontalAlignment="Left"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Usuń" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
-
-
-
     </Grid>
 </UserControl>
