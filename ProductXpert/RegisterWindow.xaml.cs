@@ -27,9 +27,9 @@ namespace ProductXpert
             InitializeComponent();
         }
 
-        private void Close_button(object sender, RoutedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         

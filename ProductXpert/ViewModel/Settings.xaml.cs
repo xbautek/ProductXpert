@@ -24,5 +24,29 @@ namespace ProductXpert.ViewModel
         {
             InitializeComponent();
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+            Button calculatorButton = parentWindow.FindName("calculator") as Button;
+
+            if (calculatorButton != null)
+            {
+                calculatorButton.Visibility = Visibility.Collapsed; // lub Visibility.Visible w zależności od potrzeb
+                calculatorButton.IsEnabled = false;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+            Button calculatorButton = parentWindow.FindName("calculator") as Button;
+
+            if (calculatorButton != null)
+            {
+                calculatorButton.Visibility = Visibility.Visible;
+                calculatorButton.IsEnabled = true;
+            }
+        }
     }
 }

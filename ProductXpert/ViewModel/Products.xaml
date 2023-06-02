@@ -102,14 +102,20 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Grid Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                                <Border Background="#FF8C949C" Height="30" CornerRadius="10">
-                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="95" Name="selecttxt">
-
-                                    </TextBox>
-                                </Border>
-                            </Grid>
+                        <Grid Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                            <Border Background="Black" Height="30" CornerRadius="10">
+                                <ComboBox BorderThickness="1" Width="100" x:Name="selectbox">
+                                    <ComboBox.Resources>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="Background" Value="#FF8C949C"/>
+                                            <Setter Property="FontFamily" Value="/Fonts/static/#Montserrat"/>
+                                            <Setter Property="BorderThickness" Value="0.5"/>
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                        </Style>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                            </Border>
                         </Grid>
 
                         <Button Style="{StaticResource ResourceKey=DataButton}" Margin="5,0,0,10" Click="Select_Click">

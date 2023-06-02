@@ -1,4 +1,5 @@
-﻿using ProductXpert.Class;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductXpert.Class;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,13 +24,17 @@ namespace ProductXpert.ViewModel
     public partial class Products : UserControl
     {
         public List<Product> MyProducts { get; set; }
-
         public Products()
         {
             InitializeComponent();
 
+            
+
             using (ProductXpertContext _context = new ProductXpertContext())
             {
+                var products = _context.Products.Select(p => p.ProductName).Distinct().ToList();
+                selectbox.ItemsSource = products;
+
                 MyProducts = _context.Products
                     .Join(_context.Materials, p => p.MaterialId, m => m.MaterialId, (p, m) => new Product
                     {
@@ -69,8 +75,7 @@ namespace ProductXpert.ViewModel
             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 // Pobierz materiał na podstawie jego nazwy
-                Material material = _context.Materials.FirstOrDefault(m => m.MaterialName == materialName);
-                MessageBox.Show($"{material.MaterialId}");
+                Material? material = _context.Materials.FirstOrDefault(m => m.MaterialName == materialName);
                 if (material != null)
                 {
                     // Utwórz nowy obiekt produktu
@@ -101,6 +106,9 @@ namespace ProductXpert.ViewModel
         {
             using (ProductXpertContext _context = new ProductXpertContext())
             {
+                string selectedProduct = selectbox.SelectedItem as string;
+
+
                 MyProducts = _context.Products
                     .Join(_context.Materials, p => p.MaterialId, m => m.MaterialId, (p, m) => new Product
                     {
@@ -111,7 +119,7 @@ namespace ProductXpert.ViewModel
                         Amount = p.Amount,
                         MinimalAmount = p.MinimalAmount
                     })
-                    .Where(p => p.ProductName == selecttxt.Text) // Klauzula where dla wyszukiwania po nazwie produktu
+                    .Where(p => p.ProductName == selectedProduct) // Klauzula where dla wyszukiwania po nazwie produktu
                     .Select(p => new Product
                     {
                         ProductId = p.ProductId,

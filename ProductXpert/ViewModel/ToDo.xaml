@@ -16,19 +16,29 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Width="700" Height="450" VerticalAlignment="Center" HorizontalAlignment="Center">
-
         <Border Style="{StaticResource ResourceKey=radius}"/>
-
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ContentGrid">
-
-
             <!-- Dodaj elementy interfejsu użytkownika dla widoku "Home" -->
-            <TextBox HorizontalAlignment="Left" FontSize="45" Background="Transparent" BorderThickness="0" TextWrapping="Wrap" TextAlignment="Center" Text="Do zrobienia" VerticalAlignment="Center" Width="615"/>
+            <Grid>
+                <Border Background="Transparent" Width="700" Height="450" CornerRadius="20"/>
+                <Grid Height="430" Width="660">
+
+                    <DataGrid MaxHeight="500"  Width="660" BorderThickness="0" IsReadOnly="True" Style="{StaticResource ResourceKey=dataStyle}" Name="ProductsList" KeyDown="DataGrid_KeyDown">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="35" Header="Id" Binding="{Binding ProductId}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="150" Header="Materiał" Binding="{Binding MaterialName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="150" Header="Nazwa" Binding="{Binding ProductName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="80" Header="Cena za szt." Binding="{Binding UnitPrice}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="110" Header="Ilość" Binding="{Binding Amount}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="*" Header="Minimalna ilość" Binding="{Binding MinimalAmount}" HeaderStyle="{StaticResource ResourceKey=header}" />
+
+                        </DataGrid.Columns>
 
 
+                    </DataGrid>
+                </Grid>
+            </Grid>
         </Grid>
-
-
-
     </Grid>
 </UserControl>

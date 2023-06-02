@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductXpert.Class;
 
@@ -16,6 +17,12 @@ public partial class Order
     public int Amount { get; set; }
 
     public string? OrderStatus { get; set; }
+
+    [NotMapped]
+    public string ProductName { get; set; } = null!;
+
+    [NotMapped]
+    public string CompanyName { get; set; } = null!;
 
     public virtual Customer Customer { get; set; } = null!;
 

@@ -142,7 +142,21 @@
                         </Button.Content>
                     </Button>
 
-                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Click="Calculator_Click" >
+                        <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Click="Settings_Click" >
+                            <Button.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48"/>
+                                        <ColumnDefinition Width="120"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Icons/settings.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat"  Text="Ustawienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+
+                            </Button.Content>
+                        </Button>
+
+                        <Button IsEnabled="True" Visibility="Visible" Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Name="calculator" Click="Calculator_Click" >
                         <Button.Content>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -156,19 +170,7 @@
                         </Button.Content>
                     </Button>
 
-                    <Button Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Click="Settings_Click" >
-                        <Button.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48"/>
-                                    <ColumnDefinition Width="120"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="/Icons/settings.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat"  Text="Ustawienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Grid>
-
-                        </Button.Content>
-                    </Button>
+                    
 
 
 

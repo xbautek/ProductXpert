@@ -23,7 +23,7 @@ public partial class Product
 
     public int? MinimalAmount { get; set; }
 
-    public virtual Material Material { get; set; }
+    public virtual Material? Material { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
