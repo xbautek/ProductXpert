@@ -59,7 +59,7 @@
 
                             <Label FontFamily="/Fonts/static/#Montserrat" Grid.Row="0" Grid.Column="0" Content="Username" HorizontalAlignment="center"  VerticalAlignment="center"/>
                         <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="5" Width="140" Height="30" Name="username" />
-                            <PasswordBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5" Width="140" Height="30" Name="password" />
+                            <PasswordBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5" Width="140" Height="30" Name="password" KeyDown="password_KeyDown" />
                             <Label FontFamily="/Fonts/static/#Montserrat" Grid.Row="1" Grid.Column="0" Content="Password" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
 
                     </Grid>

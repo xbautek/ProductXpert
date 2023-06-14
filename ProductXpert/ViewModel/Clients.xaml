@@ -73,7 +73,7 @@
                         <Grid>
                             <Grid Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,55">
                                 <Border Background="#FF8C949C" Height="25" CornerRadius="10">
-                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="125" Name="phonetxt">
+                                    <TextBox VerticalAlignment="Center" Style="{StaticResource ResourceKey=inputTextbox}" Height="25" Width="125" Name="phonetxt" PreviewTextInput="phonetxt_PreviewTextInput">
 
                                     </TextBox>
                                 </Border>

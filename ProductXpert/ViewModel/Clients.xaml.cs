@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,32 +49,48 @@ namespace ProductXpert.ViewModel
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(companynametxt.Text) || string.IsNullOrEmpty(contactnametxt.Text) || string.IsNullOrEmpty(emailtxt.Text) || string.IsNullOrEmpty(phonetxt.Text))
+            try
             {
-                MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
-            }
-            else
-            {
-                Customer newCustomer = new Customer
+                if (string.IsNullOrEmpty(companynametxt.Text) || string.IsNullOrEmpty(contactnametxt.Text) || string.IsNullOrEmpty(emailtxt.Text) || string.IsNullOrEmpty(phonetxt.Text))
                 {
-                    CompanyName = companynametxt.Text,
-                    ContactName = contactnametxt.Text,
-                    Phone = phonetxt.Text,
-                    Email = emailtxt.Text
-                };
-
-                using (ProductXpertContext _context = new ProductXpertContext())
-                {
-                    _context.Customers.Add(newCustomer);
-                    _context.SaveChanges();
+                    MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
                 }
-                Refresh();
+                else if (!(emailtxt.Text.Contains('@')))
+                {
+                    MessageBox.Show("Zły email!");
+                }
+                else
+                {
+                    Customer newCustomer = new Customer
+                    {
+                        CompanyName = companynametxt.Text,
+                        ContactName = contactnametxt.Text,
+                        Phone = phonetxt.Text,
+                        Email = emailtxt.Text
+                    };
 
-                companynametxt.Text = "";
-                contactnametxt.Text = "";
-                phonetxt.Text = "";
-                emailtxt.Text = "";
+                    using (ProductXpertContext _context = new ProductXpertContext())
+                    {
+                        _context.Customers.Add(newCustomer);
+                        _context.SaveChanges();
+                    }
+                    Refresh();
+
+                    companynametxt.Text = "";
+                    contactnametxt.Text = "";
+                    phonetxt.Text = "";
+                    emailtxt.Text = "";
+                }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Błędny format!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Błąd!");
+            }
+            
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -121,7 +138,6 @@ namespace ProductXpert.ViewModel
             
                 if (e.Key == Key.Escape)
                 {
-                    // Usunięcie zaznaczenia z aktualnie zaznaczonego elementu
                     DataGrid grid = (DataGrid)sender;
                     grid.UnselectAll();
                 }
@@ -152,31 +168,44 @@ namespace ProductXpert.ViewModel
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(selecttxt.Text))
+            try
             {
-                MessageBox.Show("Uzupełnij nazwę, po której chcesz wyszukać produkt!");
-            }
-            else
-            {
-                using (ProductXpertContext _context = new ProductXpertContext())
+                if (string.IsNullOrEmpty(selecttxt.Text))
                 {
-                    MyClients = _context.Customers
-                        .Where(m => m.CompanyName == selecttxt.Text)
-                        .Select(m => new Customer
-                        {
-                            CustomerId = m.CustomerId,
-                            CompanyName = m.CompanyName,
-                            ContactName = m.ContactName,
-                            Phone = m.Phone,
-                            Email = m.Email
-                        })
-                        .ToList();
+                    MessageBox.Show("Uzupełnij nazwę, po której chcesz wyszukać produkt!");
                 }
+                else
+                {
+                    using (ProductXpertContext _context = new ProductXpertContext())
+                    {
+                        MyClients = _context.Customers
+                            .Where(m => m.CompanyName == selecttxt.Text)
+                            .Select(m => new Customer
+                            {
+                                CustomerId = m.CustomerId,
+                                CompanyName = m.CompanyName,
+                                ContactName = m.ContactName,
+                                Phone = m.Phone,
+                                Email = m.Email
+                            })
+                            .ToList();
+                    }
 
-                CustomersList.AutoGenerateColumns = false;
-                CustomersList.ItemsSource = MyClients;
-                selecttxt.Text = "";
+                    CustomersList.AutoGenerateColumns = false;
+                    CustomersList.ItemsSource = MyClients;
+                    selecttxt.Text = "";
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Błąd!");
+            }
+        }
+
+        private void phonetxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

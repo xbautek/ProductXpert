@@ -64,7 +64,39 @@ namespace ProductXpert
             }
         }
 
-        
+        private void login_Click()
+        {
+            if (string.IsNullOrEmpty(username.Text))
+            {
+                MessageBox.Show("Enter your username!");
+            }
+            else if (string.IsNullOrEmpty(password.Password))
+            {
+                MessageBox.Show("Enter the password!");
+            }
+            else
+            {
+                try
+                {
+                    if (Database.CheckUser(username.Text, password.Password))
+                    {
+                        MessageBox.Show("login successfull");
+
+                        MajorWindow major = new MajorWindow();
+                        major.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("username or password is invalide");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
 
         private void register_Button_Click(object sender, RoutedEventArgs e)
@@ -81,6 +113,14 @@ namespace ProductXpert
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                login_Click();
+            }
         }
     }
 }

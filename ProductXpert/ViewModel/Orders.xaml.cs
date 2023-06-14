@@ -58,110 +58,164 @@ namespace ProductXpert.ViewModel
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            // Pobierz dane z formularza
-            string companyName = companynametxt.Text;
-            string productName = productnametxt.Text;
-            DateTime date = DateTime.Parse(datetxt.Text);
-            int amount = int.Parse(amounttxt.Text);
-            string status = statustxt.Text;
-
-            using (ProductXpertContext _context = new ProductXpertContext())
+            try
             {
-                // Pobierz firme na podstawie jej nazwy
-                Customer? customer = _context.Customers.FirstOrDefault(c => c.CompanyName == companyName);
-                // Pobierz produkt na podstawie jego nazwy
-                Product? product = _context.Products.FirstOrDefault(p => p.ProductName == productName);
-
-
-                //MessageBox.Show($"{material.MaterialId}");
-                if (customer != null && product != null)
+                DateTime date;
+                if (string.IsNullOrEmpty(companynametxt.Text) || string.IsNullOrEmpty(productnametxt.Text) || string.IsNullOrEmpty(datetxt.Text) || string.IsNullOrEmpty(amounttxt.Text) || string.IsNullOrEmpty(statustxt.Text))
                 {
-                    // Utwórz nowy obiekt produktu
-                    Order newOrder = new Order
-                    {
-                        ProductId = product.ProductId,
-                        OrderDate = date,
-                        Amount = amount,
-                        OrderStatus = status,
-                        CustomerId = customer.CustomerId // Przypisz ID materiału do właściwości MaterialId produktu
-                    };
-
-                    // Dodaj produkt do kontekstu i zapisz zmiany w bazie danych
-                    _context.Orders.Add(newOrder);
-                    _context.SaveChanges();
-
-                    // Odśwież listę produktów
-                    Refresh();
+                    MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
+                }
+                else if (!DateTime.TryParse(datetxt.Text, out date))
+                {
+                    MessageBox.Show("Zły format daty!");
                 }
                 else
                 {
-                    MessageBox.Show("Nie znaleziono firmy bądź produktu o podanej nazwie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    // Pobierz dane z formularza
+                    string companyName = companynametxt.Text;
+                    string productName = productnametxt.Text;
+                    int amount = int.Parse(amounttxt.Text);
+                    string status = statustxt.Text;
+
+                    using (ProductXpertContext _context = new ProductXpertContext())
+                    {
+                        // Pobierz firme na podstawie jej nazwy
+                        Customer? customer = _context.Customers.FirstOrDefault(c => c.CompanyName == companyName);
+                        // Pobierz produkt na podstawie jego nazwy
+                        Product? product = _context.Products.FirstOrDefault(p => p.ProductName == productName);
+
+
+                        //MessageBox.Show($"{material.MaterialId}");
+                        if (customer != null && product != null)
+                        {
+                            // Utwórz nowy obiekt produktu
+                            Order newOrder = new Order
+                            {
+                                ProductId = product.ProductId,
+                                OrderDate = date,
+                                Amount = amount,
+                                OrderStatus = status,
+                                CustomerId = customer.CustomerId // Przypisz ID materiału do właściwości MaterialId produktu
+                            };
+
+                            // Dodaj produkt do kontekstu i zapisz zmiany w bazie danych
+                            _context.Orders.Add(newOrder);
+                            _context.SaveChanges();
+
+                            // Odśwież listę produktów
+                            Refresh();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nie znaleziono firmy bądź produktu o podanej nazwie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
                 }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Błędny format!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Błąd!");
+            }
+            
         }
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            using (ProductXpertContext _context = new ProductXpertContext())
+            try
             {
-                MyOrders = _context.Orders
-                    .Join(_context.Customers, o => o.CustomerId, c => c.CustomerId, (o, c) => new { Order = o, Customer = c })
-                    .Join(_context.Products, oc => oc.Order.ProductId, p => p.ProductId, (oc, p) => new Order
+                if (string.IsNullOrEmpty(selecttxt.Text))
+                {
+                    MessageBox.Show("Wprowadź nazwe produktu!");
+                }
+                else
+                {
+                    using (ProductXpertContext _context = new ProductXpertContext())
                     {
-                        OrderId = oc.Order.OrderId,
-                        CompanyName = oc.Customer.CompanyName,
-                        ProductName = p.ProductName,
-                        OrderDate = oc.Order.OrderDate,
-                        Amount = oc.Order.Amount,
-                        OrderStatus = oc.Order.OrderStatus
-                    })
-                    .Where(p => p.ProductName == selecttxt.Text)
-                    .Select(o => new Order
-                    {
-                        OrderId = o.OrderId,
-                        CompanyName = o.CompanyName,
-                        ProductName = o.ProductName,
-                        OrderDate = o.OrderDate,
-                        Amount = o.Amount,
-                        OrderStatus = o.OrderStatus
-                    })
-                    .ToList();
-            }
+                        MyOrders = _context.Orders
+                            .Join(_context.Customers, o => o.CustomerId, c => c.CustomerId, (o, c) => new { Order = o, Customer = c })
+                            .Join(_context.Products, oc => oc.Order.ProductId, p => p.ProductId, (oc, p) => new Order
+                            {
+                                OrderId = oc.Order.OrderId,
+                                CompanyName = oc.Customer.CompanyName,
+                                ProductName = p.ProductName,
+                                OrderDate = oc.Order.OrderDate,
+                                Amount = oc.Order.Amount,
+                                OrderStatus = oc.Order.OrderStatus
+                            })
+                            .Where(p => p.ProductName == selecttxt.Text)
+                            .Select(o => new Order
+                            {
+                                OrderId = o.OrderId,
+                                CompanyName = o.CompanyName,
+                                ProductName = o.ProductName,
+                                OrderDate = o.OrderDate,
+                                Amount = o.Amount,
+                                OrderStatus = o.OrderStatus
+                            })
+                            .ToList();
+                    }
 
-            orderslist.AutoGenerateColumns = false;
-            orderslist.ItemsSource = MyOrders;
+                    orderslist.AutoGenerateColumns = false;
+                    orderslist.ItemsSource = MyOrders;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Błąd!");
+            }
+            
+   
         }
 
         private void Select()
         {
-            using (ProductXpertContext _context = new ProductXpertContext())
+            try
             {
-                MyOrders = _context.Orders
-                    .Join(_context.Customers, o => o.CustomerId, c => c.CustomerId, (o, c) => new { Order = o, Customer = c })
-                    .Join(_context.Products, oc => oc.Order.ProductId, p => p.ProductId, (oc, p) => new Order
+                if (string.IsNullOrEmpty(selecttxt.Text))
+                {
+                    MessageBox.Show("Wprowadź nazwe produktu!");
+                }
+                else
+                {
+                    using (ProductXpertContext _context = new ProductXpertContext())
                     {
-                        OrderId = oc.Order.OrderId,
-                        CompanyName = oc.Customer.CompanyName,
-                        ProductName = p.ProductName,
-                        OrderDate = oc.Order.OrderDate,
-                        Amount = oc.Order.Amount,
-                        OrderStatus = oc.Order.OrderStatus
-                    })
-                    .Where(p => p.ProductName == selecttxt.Text)
-                    .Select(o => new Order
-                    {
-                        OrderId = o.OrderId,
-                        CompanyName = o.CompanyName,
-                        ProductName = o.ProductName,
-                        OrderDate = o.OrderDate,
-                        Amount = o.Amount,
-                        OrderStatus = o.OrderStatus
-                    })
-                    .ToList();
-            }
+                        MyOrders = _context.Orders
+                            .Join(_context.Customers, o => o.CustomerId, c => c.CustomerId, (o, c) => new { Order = o, Customer = c })
+                            .Join(_context.Products, oc => oc.Order.ProductId, p => p.ProductId, (oc, p) => new Order
+                            {
+                                OrderId = oc.Order.OrderId,
+                                CompanyName = oc.Customer.CompanyName,
+                                ProductName = p.ProductName,
+                                OrderDate = oc.Order.OrderDate,
+                                Amount = oc.Order.Amount,
+                                OrderStatus = oc.Order.OrderStatus
+                            })
+                            .Where(p => p.ProductName == selecttxt.Text)
+                            .Select(o => new Order
+                            {
+                                OrderId = o.OrderId,
+                                CompanyName = o.CompanyName,
+                                ProductName = o.ProductName,
+                                OrderDate = o.OrderDate,
+                                Amount = o.Amount,
+                                OrderStatus = o.OrderStatus
+                            })
+                            .ToList();
 
-            orderslist.AutoGenerateColumns = false;
-            orderslist.ItemsSource = MyOrders;
+                        orderslist.AutoGenerateColumns = false;
+                        orderslist.ItemsSource = MyOrders;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Błąd!");
+            }
+            
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -228,24 +282,32 @@ namespace ProductXpert.ViewModel
 
         private void Delete_click(object sender, RoutedEventArgs e)
         {
-            if (orderslist.SelectedItem is Order selectedProduct)
+            try
             {
-                MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten rekord?", "Potwierdzenie usunięcia", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
+                if (orderslist.SelectedItem is Order selectedProduct)
                 {
-                    using (ProductXpertContext _context = new ProductXpertContext())
+                    MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten rekord?", "Potwierdzenie usunięcia", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
                     {
-                        var productToRemove = _context.Orders.FirstOrDefault(o => o.OrderId == selectedProduct.OrderId);
-                        if (productToRemove != null)
+                        using (ProductXpertContext _context = new ProductXpertContext())
                         {
-                            _context.Orders.Remove(productToRemove);
-                            _context.SaveChanges();
+                            var productToRemove = _context.Orders.FirstOrDefault(o => o.OrderId == selectedProduct.OrderId);
+                            if (productToRemove != null)
+                            {
+                                _context.Orders.Remove(productToRemove);
+                                _context.SaveChanges();
+                            }
                         }
                     }
                 }
+                Refresh();
             }
-            Refresh();
+            catch
+            {
+                MessageBox.Show("Błąd!");
+            }
+            
         }
 
         private void DataGrid_KeyDown(object sender, KeyEventArgs e)
