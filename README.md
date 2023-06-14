@@ -22,7 +22,7 @@ To set up the database for ProductXpert, follow these steps:
 1. Clone the ProductXpert repository to your local machine.
 2. Open the solution in Visual Studio.
 3. Build the solution to restore NuGet packages and ensure all dependencies are resolved.
-4. Modify the database connection string in the appsettings.json file to match your SQL server configuration.
+4. Modify the database connection string in the ProductXpertContext.cs file at line 30 to match your SQL server configuration.
 5. Run the application from Visual Studio, and the ProductXpert application will launch.
 
 # Contributing
