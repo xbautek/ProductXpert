@@ -120,6 +120,9 @@ namespace ProductXpert.ViewModel
                 {
                     MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
                 }
+                else if(Convert.ToDecimal(pricetxt.Text.Replace('.', ',')) < 0 || Convert.ToDecimal(weighttxt.Text.Replace('.', ',')) < 0){
+                    MessageBox.Show("Cena i waga muszą być wartościami nieujemnymi!");
+                }
                 else
                 {
                     Material newMaterial = new Material

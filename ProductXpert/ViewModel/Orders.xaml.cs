@@ -77,6 +77,8 @@ namespace ProductXpert.ViewModel
                     int amount = int.Parse(amounttxt.Text);
                     string status = statustxt.Text;
 
+                    DateTime datee = DateTime.Parse(datetxt.Text);
+
                     using (ProductXpertContext _context = new ProductXpertContext())
                     {
                         // Pobierz firme na podstawie jej nazwy
@@ -92,7 +94,7 @@ namespace ProductXpert.ViewModel
                             Order newOrder = new Order
                             {
                                 ProductId = product.ProductId,
-                                OrderDate = date,
+                                OrderDate = datee,
                                 Amount = amount,
                                 OrderStatus = status,
                                 CustomerId = customer.CustomerId // Przypisz ID materiału do właściwości MaterialId produktu
@@ -116,9 +118,9 @@ namespace ProductXpert.ViewModel
             {
                 MessageBox.Show("Błędny format!");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Błąd!");
+                MessageBox.Show(ex.Message);
             }
             
         }
