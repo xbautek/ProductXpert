@@ -29,7 +29,7 @@
         </Grid>
 
         <Grid>
-            <CheckBox FontFamily="/Fonts/static/#Montserrat" Content="Wyłącz kalkulator" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox IsChecked="False" Name="calccheck" FontFamily="/Fonts/static/#Montserrat" Content="Wyłącz kalkulator" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
 
 
         </Grid>

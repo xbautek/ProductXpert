@@ -140,6 +140,9 @@ namespace ProductXpert.ViewModel
         {
             using (ProductXpertContext _context = new ProductXpertContext())
             {
+                var products = _context.Products.Select(p => p.ProductName).Distinct().ToList();
+                selectbox.ItemsSource = products;
+
                 MyProducts = _context.Products
                     .Join(_context.Materials, p => p.MaterialId, m => m.MaterialId, (p, m) => new Product
                     {
@@ -170,6 +173,9 @@ namespace ProductXpert.ViewModel
         {
             using (ProductXpertContext _context = new ProductXpertContext())
             {
+                var products = _context.Products.Select(p => p.ProductName).Distinct().ToList();
+                selectbox.ItemsSource = products;
+
                 MyProducts = _context.Products
                     .Join(_context.Materials, p => p.MaterialId, m => m.MaterialId, (p, m) => new Product
                     {

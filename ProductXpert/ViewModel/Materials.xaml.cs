@@ -58,7 +58,7 @@ namespace ProductXpert.ViewModel
 
         private void Refresh()
         {
-            using (ProductXpertContext _context = new ProductXpertContext())
+             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 MyMaterials = _context.Materials
                     .Select(m => new Material

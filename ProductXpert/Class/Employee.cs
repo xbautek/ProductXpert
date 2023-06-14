@@ -18,6 +18,13 @@ public partial class Employee
 
     public string Password { get; set; } = null!;
 
+    /// <summary>
+    /// Initializes a new instance of the Employee class using the provided data.
+    /// </summary>
+    /// <param name="lastName">The last name of the employee.</param>
+    /// <param name="firstName">The first name of the employee.</param>
+    /// <param name="username">The username of the employee.</param>
+    /// <param name="password">The password of the employee.</param>
     public Employee(string lastName, string firstName, string username, string password)
     {
         LastName = lastName;
@@ -26,43 +33,50 @@ public partial class Employee
         Password = GeneratePasswordHash(password);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the Employee class using the provided data.
+    /// </summary>
+    /// <param name="username">The username of the employee.</param>
+    /// <param name="password">The password of the employee.</param>
     public Employee(string username, string password)
     {
         Username = username;
         Password = GeneratePasswordHash(password);
     }
 
+    /// <summary>
+    /// Generates a password hash using the SHA256 algorithm.
+    /// </summary>
+    /// <param name="password">The password to hash.</param>
+    /// <returns>The password hash as a string.</returns>
     private string GeneratePasswordHash(string password)
     {
         using (var sha256 = SHA256.Create())
         {
-            // Konwertuj hasło na tablicę bajtów
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-            // Oblicz skrót hasła
             byte[] hashBytes = sha256.ComputeHash(passwordBytes);
 
-            // Konwertuj skrót na zapis szesnastkowy
             string hash = BitConverter.ToString(hashBytes).Replace("-", "");
 
             return hash;
         }
     }
-
+    /// <summary>
+    /// Verifies the provided password by comparing it with the stored password hash.
+    /// </summary>
+    /// <param name="password">The password to verify.</param>
+    /// <returns>True if the provided password is correct, otherwise false.</returns>
     public bool VerifyPassword(string password)
     {
         using (var sha256 = SHA256.Create())
         {
-            // Konwertuj wprowadzone hasło na tablicę bajtów
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-            // Oblicz skrót dla wprowadzonego hasła
             byte[] inputHashBytes = sha256.ComputeHash(passwordBytes);
 
-            // Konwertuj skrót wprowadzonego hasła na zapis szesnastkowy
             string inputHash = BitConverter.ToString(inputHashBytes).Replace("-", "");
 
-            // Porównaj skróty hasła
             return Password.Equals(inputHash);
         }
     }

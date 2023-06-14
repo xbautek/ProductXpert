@@ -156,7 +156,7 @@
                             </Button.Content>
                         </Button>
 
-                        <Button IsEnabled="True" Visibility="Visible" Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" Name="calculator" Click="Calculator_Click" >
+                        <Button IsEnabled="True" Visibility="Visible" Style="{StaticResource CustomButtonStyle}" BorderThickness="0" Height="48" Margin="0,5,0,5" HorizontalAlignment="Stretch" x:Name="calculator" Click="Calculator_Click" >
                         <Button.Content>
                             <Grid>
                                 <Grid.ColumnDefinitions>
