@@ -15,15 +15,17 @@ To ensure smooth operation of the ProductXpert application, make sure you have t
 # Database Setup
 To set up the database for ProductXpert, follow these steps:
 
-- Open Microsoft SQL Server Management Studio (SSMS) or any SQL client.
+- Open Microsoft SQL Server Management Studio (SSMS).
 - Execute the ProductXpert.sql script provided in the repository. This script will create the necessary tables and populate them with initial data.
 
 # Running the Application
 1. Clone the ProductXpert repository to your local machine.
 2. Open the solution in Visual Studio.
 3. Build the solution to restore NuGet packages and ensure all dependencies are resolved.
-4. Modify the database connection string in the ProductXpertContext.cs file at line 30 to match your SQL server configuration.
-5. Run the application from Visual Studio, and the ProductXpert application will launch.
+4. Go to View --> Sql Server Object Explorer --> add connection to local server with created database.
+5. Find your database in Object Explorer, go to properties and copy connection string.
+6. Modify the database connection string in the ProductXpertContext.cs file at line 30 to match your SQL server configuration.
+7. Run the application from Visual Studio, and the ProductXpert application will launch.
 
 # Contributing
 Contributions to ProductXpert are welcome! If you encounter any issues or have suggestions for improvements, please open an issue in the repository. Additionally, feel free to fork the repository and submit pull requests to contribute code changes.
