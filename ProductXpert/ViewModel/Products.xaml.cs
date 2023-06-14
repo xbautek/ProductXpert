@@ -24,13 +24,14 @@ namespace ProductXpert.ViewModel
     /// </summary>
     public partial class Products : UserControl
     {
+        //Products list
         public List<Product> MyProducts { get; set; }
         public Products()
         {
             InitializeComponent();
 
-            
 
+            //Generating data to DataGrid from database
             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 var products = _context.Products.Select(p => p.ProductName).Distinct().ToList();
@@ -62,6 +63,7 @@ namespace ProductXpert.ViewModel
             ProductsList.ItemsSource = MyProducts;
         }
 
+        //Function adds new client to the database
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -122,6 +124,7 @@ namespace ProductXpert.ViewModel
             
         }
 
+        //Function which selects rows 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -164,6 +167,7 @@ namespace ProductXpert.ViewModel
             
         }
 
+        // Function refreshing clients list
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -197,6 +201,7 @@ namespace ProductXpert.ViewModel
             ProductsList.ItemsSource = MyProducts;
         }
 
+        // Function refreshing clients list
         private void Refresh()
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -230,6 +235,7 @@ namespace ProductXpert.ViewModel
             ProductsList.ItemsSource = MyProducts;
         }
 
+        //Function deletes row
         private void Delete_click(object sender, RoutedEventArgs e)
         {
             try
@@ -259,6 +265,7 @@ namespace ProductXpert.ViewModel
             }
         }
 
+        // Event which unselects selected row
         private void DataGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)

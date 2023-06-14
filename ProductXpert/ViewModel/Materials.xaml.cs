@@ -24,12 +24,14 @@ namespace ProductXpert.ViewModel
     /// </summary>
     public partial class Materials : UserControl
     {
+        //Materials list
         public List<Material> MyMaterials { get; set; }
 
         public Materials()
         {
             InitializeComponent();
 
+            //Generating data to DataGrid from database
             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 MyMaterials = _context.Materials
@@ -48,6 +50,7 @@ namespace ProductXpert.ViewModel
             MaterialsList.ItemsSource = MyMaterials;
         }
 
+        // Event which unselects selected row
         private void DataGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -57,6 +60,7 @@ namespace ProductXpert.ViewModel
             }
         }
 
+        // Function refreshing clients list
         private void Refresh()
         {
              using (ProductXpertContext _context = new ProductXpertContext())
@@ -77,6 +81,7 @@ namespace ProductXpert.ViewModel
             MaterialsList.ItemsSource = MyMaterials;
         }
 
+        //Function deletes row
         private void Delete_click(object sender, RoutedEventArgs e)
         {
             try
@@ -111,6 +116,7 @@ namespace ProductXpert.ViewModel
             
         }
 
+        //Function adds new client to the database
         private void Add_Click(object sender, RoutedEventArgs e)
         {
 
@@ -156,6 +162,8 @@ namespace ProductXpert.ViewModel
             }
         }
 
+
+        //Function which selects rows 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -193,6 +201,7 @@ namespace ProductXpert.ViewModel
            
         }
 
+        // Function refreshing clients list
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Refresh();

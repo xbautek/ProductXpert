@@ -27,6 +27,7 @@ namespace ProductXpert.ViewModel
         {
             InitializeComponent();
 
+            // Initialize the MyOrders list with data from the database
             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 MyOrders = _context.Orders
@@ -52,89 +53,86 @@ namespace ProductXpert.ViewModel
                     .ToList();
             }
 
+            // Configure the data grid to display the orders
             orderslist.AutoGenerateColumns = false;
             orderslist.ItemsSource = MyOrders;
         }
 
+        // Event handler for the Add button click
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Validate the input fields
                 DateTime date;
                 if (string.IsNullOrEmpty(companynametxt.Text) || string.IsNullOrEmpty(productnametxt.Text) || string.IsNullOrEmpty(datetxt.Text) || string.IsNullOrEmpty(amounttxt.Text) || string.IsNullOrEmpty(statustxt.Text))
                 {
-                    MessageBox.Show("Uzupełnij wszystkie komórki panelu dodawania rekordu do bazy!");
+                    MessageBox.Show("Please fill in all the fields in the record adding panel!");
                 }
                 else if (!DateTime.TryParse(datetxt.Text, out date))
                 {
-                    MessageBox.Show("Zły format daty!");
+                    MessageBox.Show("Invalid date format!");
                 }
                 else
                 {
-                    // Pobierz dane z formularza
+                    // Parse the input values
                     string companyName = companynametxt.Text;
                     string productName = productnametxt.Text;
                     int amount = int.Parse(amounttxt.Text);
                     string status = statustxt.Text;
-
                     DateTime datee = DateTime.Parse(datetxt.Text);
 
+                    // Add the new order to the database
                     using (ProductXpertContext _context = new ProductXpertContext())
                     {
-                        // Pobierz firme na podstawie jej nazwy
                         Customer? customer = _context.Customers.FirstOrDefault(c => c.CompanyName == companyName);
-                        // Pobierz produkt na podstawie jego nazwy
                         Product? product = _context.Products.FirstOrDefault(p => p.ProductName == productName);
 
-
-                        //MessageBox.Show($"{material.MaterialId}");
                         if (customer != null && product != null)
                         {
-                            // Utwórz nowy obiekt produktu
                             Order newOrder = new Order
                             {
                                 ProductId = product.ProductId,
                                 OrderDate = datee,
                                 Amount = amount,
                                 OrderStatus = status,
-                                CustomerId = customer.CustomerId // Przypisz ID materiału do właściwości MaterialId produktu
+                                CustomerId = customer.CustomerId
                             };
 
-                            // Dodaj produkt do kontekstu i zapisz zmiany w bazie danych
                             _context.Orders.Add(newOrder);
                             _context.SaveChanges();
 
-                            // Odśwież listę produktów
                             Refresh();
                         }
                         else
                         {
-                            MessageBox.Show("Nie znaleziono firmy bądź produktu o podanej nazwie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("No company or product found with the given name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
             }
             catch (FormatException)
             {
-                MessageBox.Show("Błędny format!");
+                MessageBox.Show("Invalid format!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
+        // Event handler for the Select button click
         private void Select_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (string.IsNullOrEmpty(selecttxt.Text))
                 {
-                    MessageBox.Show("Wprowadź nazwe produktu!");
+                    MessageBox.Show("Please enter a product name!");
                 }
                 else
                 {
+                    // Select orders with the specified product name from the database
                     using (ProductXpertContext _context = new ProductXpertContext())
                     {
                         MyOrders = _context.Orders
@@ -161,65 +159,18 @@ namespace ProductXpert.ViewModel
                             .ToList();
                     }
 
+                    // Display the selected orders in the data grid
                     orderslist.AutoGenerateColumns = false;
                     orderslist.ItemsSource = MyOrders;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Błąd!");
+                MessageBox.Show("Error!");
             }
-            
-   
         }
 
-        private void Select()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(selecttxt.Text))
-                {
-                    MessageBox.Show("Wprowadź nazwe produktu!");
-                }
-                else
-                {
-                    using (ProductXpertContext _context = new ProductXpertContext())
-                    {
-                        MyOrders = _context.Orders
-                            .Join(_context.Customers, o => o.CustomerId, c => c.CustomerId, (o, c) => new { Order = o, Customer = c })
-                            .Join(_context.Products, oc => oc.Order.ProductId, p => p.ProductId, (oc, p) => new Order
-                            {
-                                OrderId = oc.Order.OrderId,
-                                CompanyName = oc.Customer.CompanyName,
-                                ProductName = p.ProductName,
-                                OrderDate = oc.Order.OrderDate,
-                                Amount = oc.Order.Amount,
-                                OrderStatus = oc.Order.OrderStatus
-                            })
-                            .Where(p => p.ProductName == selecttxt.Text)
-                            .Select(o => new Order
-                            {
-                                OrderId = o.OrderId,
-                                CompanyName = o.CompanyName,
-                                ProductName = o.ProductName,
-                                OrderDate = o.OrderDate,
-                                Amount = o.Amount,
-                                OrderStatus = o.OrderStatus
-                            })
-                            .ToList();
-
-                        orderslist.AutoGenerateColumns = false;
-                        orderslist.ItemsSource = MyOrders;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Błąd!");
-            }
-            
-        }
-
+        // Refreshes the data grid with all orders
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -251,6 +202,7 @@ namespace ProductXpert.ViewModel
             orderslist.ItemsSource = MyOrders;
         }
 
+        // Refreshes the data grid with all orders
         private void Refresh()
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -282,13 +234,14 @@ namespace ProductXpert.ViewModel
             orderslist.ItemsSource = MyOrders;
         }
 
+        // Deletes the selected order from the data grid and database
         private void Delete_click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (orderslist.SelectedItem is Order selectedProduct)
                 {
-                    MessageBoxResult result = MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten rekord?", "Potwierdzenie usunięcia", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this record?", "Delete Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -307,11 +260,11 @@ namespace ProductXpert.ViewModel
             }
             catch
             {
-                MessageBox.Show("Błąd!");
+                MessageBox.Show("Error!");
             }
-            
         }
 
+        // Event handler for the Escape key press in the data grid
         private void DataGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -319,7 +272,6 @@ namespace ProductXpert.ViewModel
                 DataGrid grid = (DataGrid)sender;
                 grid.UnselectAll();
             }
-            
-        }  
+        }
     }
 }

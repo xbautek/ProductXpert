@@ -22,13 +22,17 @@ namespace ProductXpert.ViewModel
     /// </summary>
     public partial class Clients : UserControl
     {
+        // Clients list
         public List<Customer> MyClients { get; set; }
+
 
 
         public Clients()
         {
+
             InitializeComponent();
 
+            //Generating data to DataGrid from database
             using (ProductXpertContext _context = new ProductXpertContext())
             {
                 MyClients = _context.Customers
@@ -47,6 +51,8 @@ namespace ProductXpert.ViewModel
             CustomersList.ItemsSource = MyClients;
         }
 
+
+        //Function adds new client to the database
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -93,6 +99,7 @@ namespace ProductXpert.ViewModel
             
         }
 
+        // Function refreshing clients list
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -113,6 +120,7 @@ namespace ProductXpert.ViewModel
             CustomersList.ItemsSource = MyClients;
         }
 
+        // Function refreshing clients list
         private void Refresh()
         {
             using (ProductXpertContext _context = new ProductXpertContext())
@@ -133,9 +141,9 @@ namespace ProductXpert.ViewModel
             CustomersList.ItemsSource = MyClients;
         }
 
+        // Event which unselects selected row
         private void DataGrid_KeyDown(object sender, KeyEventArgs e)
         {
-            
                 if (e.Key == Key.Escape)
                 {
                     DataGrid grid = (DataGrid)sender;
@@ -144,6 +152,7 @@ namespace ProductXpert.ViewModel
             
         }
 
+        //Function deletes row
         private void Delete_click(object sender, RoutedEventArgs e)
         {
             if (CustomersList.SelectedItem is Customer selectedMaterial)
@@ -166,6 +175,7 @@ namespace ProductXpert.ViewModel
             Refresh();
         }
 
+        //Function which selects rows 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -202,6 +212,7 @@ namespace ProductXpert.ViewModel
             }
         }
 
+        // Function which determines that only numbers might be inputed to textboxt
         private void phonetxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
