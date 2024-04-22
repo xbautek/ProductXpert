@@ -27,9 +27,9 @@
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Width="35" Header="Id" Binding="{Binding CustomerId}" HeaderStyle="{StaticResource ResourceKey=header}" />
-                            <DataGridTextColumn Width="150" Header="Nazwa Firmy" Binding="{Binding CompanyName}" HeaderStyle="{StaticResource ResourceKey=header}" />
-                            <DataGridTextColumn Width="180" Header="Nazwa kontaktu" Binding="{Binding ContactName}" HeaderStyle="{StaticResource ResourceKey=header}" />
-                            <DataGridTextColumn Width="130" Header="Numer Telefonu" Binding="{Binding Phone}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="150" Header="Company" Binding="{Binding CompanyName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="180" Header="Contact name" Binding="{Binding ContactName}" HeaderStyle="{StaticResource ResourceKey=header}" />
+                            <DataGridTextColumn Width="130" Header="Phone number" Binding="{Binding Phone}" HeaderStyle="{StaticResource ResourceKey=header}" />
                             <DataGridTextColumn Width="*" Header="E-mail" Binding="{Binding Email}" HeaderStyle="{StaticResource ResourceKey=header}" />
 
                         </DataGrid.Columns>
@@ -109,7 +109,7 @@
                                         <ColumnDefinition Width="60"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Icons/search.png" Width="40" Height="35" Margin="3,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Szukaj" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Search" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </Button.Content>
                         </Button>
@@ -122,7 +122,7 @@
                                         <ColumnDefinition Width="60"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Icons/refresh.png" Width="40" Height="35" Margin="3,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Odśwież" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Refresh" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </Button.Content>
                         </Button>
@@ -135,7 +135,7 @@
                                         <ColumnDefinition Width="60"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Icons/delete.png" Margin="4,0,0,0" Width="40" Height="35" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Usuń" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Delete" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </Button.Content>
                         </Button>

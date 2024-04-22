@@ -80,7 +80,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/orders.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Zamówienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Orders" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -94,7 +94,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/inventory.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="center" Stretch="Uniform" />
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Produkty" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Products" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -108,7 +108,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image  Source="/Icons/Construction.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Do zrobienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="To Do" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -122,7 +122,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/Warehouse.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Materiały" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Materials" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -136,7 +136,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/clients.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Klienci" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Clients" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
@@ -150,7 +150,7 @@
                                         <ColumnDefinition Width="120"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="/Icons/settings.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat"  Text="Ustawienia" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat"  Text="Settings" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
 
                             </Button.Content>
@@ -164,7 +164,7 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="/Icons/calculate.png" Width="48" Height="48" Margin="0" Grid.Column="0" HorizontalAlignment="Left"/>
-                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Kalkulator" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock FontFamily="/Fonts/static/#Montserrat" Text="Calculator" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
 
                         </Button.Content>
