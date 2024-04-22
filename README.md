@@ -1,3 +1,5 @@
+![](/productxpert.png)
+
 # ProductXpert
 ProductXpert is a simple desktop application created using WPF (Windows Presentation Foundation). The main goal of this project is to provide efficient management of products, materials, customers, and production processes. The application is still in progress.
 
